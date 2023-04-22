@@ -1,0 +1,4 @@
+{{- $isHome := eq .Page.Permalink site.Sites.First.Home.Permalink }}
+{{- if $isHome }}
+  {{ partialCached "hb/modules/preferred-language/assets/js" .Page }}
+{{- end }}

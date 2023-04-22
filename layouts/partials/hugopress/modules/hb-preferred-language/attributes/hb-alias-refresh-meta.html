@@ -1,0 +1,5 @@
+{{- $isHome := eq .Page.Permalink site.Sites.First.Home.Permalink }}
+{{- return dict
+  "http-equiv" "refresh"
+  "content" (printf "%d; url=%s" (cond $isHome 5 0) .Page.Permalink)
+-}}

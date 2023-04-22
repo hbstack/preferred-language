@@ -1,0 +1,11 @@
+{{- $homes := newScratch }}
+{{- range site.Sites }}
+  {{- $homes.Set .Home.Lang .Home.Permalink }}
+{{- end }}
+{{- $opts := dict
+  "minify" hugo.IsProduction
+  "targetPath" "js/preferred-language.js"
+  "params" (dict "homes" $homes.Values "fallback" .Permalink)
+}}
+{{- $js := resources.Get "hb/modules/preferred-language/index.ts" | js.Build $opts }}
+<script src="{{ $js.RelPermalink }}"></script>
